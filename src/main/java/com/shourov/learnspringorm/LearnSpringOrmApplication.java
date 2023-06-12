@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Optional;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 @Slf4j
@@ -23,6 +25,10 @@ public class LearnSpringOrmApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		/*
+		* Saving the data
+		* */
 		Student student = Student.builder()
 				.studentId(1)
 				.studentName("Shourov")
@@ -38,6 +44,20 @@ public class LearnSpringOrmApplication implements CommandLineRunner {
 
 		Student savedStudent = studentRepository.save(student);
 
-//		log.info("Created student: {}", savedStudent);
+		//		log.info("Created student: {}", savedStudent);
+
+		/*
+		 * Printing the value
+		 * */
+		Student student_1 = studentRepository.findById(1).orElse(null);
+
+		assert student_1 != null;
+		log.info("Name is {}", student_1.getStudentName());
+
+		Laptop laptop = student_1.getLaptop();
+		log.info("Laptop is {}", laptop.getModelNumber());
+
+
+
 	}
 }
