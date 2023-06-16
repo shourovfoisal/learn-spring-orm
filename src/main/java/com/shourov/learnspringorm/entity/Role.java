@@ -15,18 +15,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Role {
 
     @Id
-    private int studentId;
-    private String studentName;
-    private String about;
+    private int id;
+    private String name;
+    private int rank;
+    private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "laptop_id")
-    private Laptop laptop;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-    private List<Address> address;
-
+    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+    private List<UserData> users;
 }

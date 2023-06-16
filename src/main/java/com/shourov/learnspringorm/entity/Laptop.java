@@ -1,6 +1,9 @@
 package com.shourov.learnspringorm.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "jpa_laptop")
 @Builder
 @Getter
 @Setter
@@ -21,8 +23,7 @@ public class Laptop {
     private String modelNumber;
     private String brand;
 
-    @OneToOne
-    @JoinColumn(name = "student_id")
+    @OneToOne(mappedBy = "laptop")
     private Student student;
 
 }
